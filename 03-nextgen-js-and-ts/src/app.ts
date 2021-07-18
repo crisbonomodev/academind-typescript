@@ -20,7 +20,7 @@
 // result no esta disponible fuera de la funcion donde fue declarada
 //console.log(result); // Cannot find name 'result'.ts(2304)
 // var si lo esta
-console.log(isOld); 
+//(console.log(isOld); 
 
 //   Arrow Functions
 // Forma normal
@@ -28,7 +28,7 @@ console.log(isOld);
 //     return a + b;
 // }
 // Si solo hay un return, podemos escribirla asi
-const add = (a: number, b: number) => a + b;
+// const add = (a: number, b: number) => a + b;
 
 // Si solo hay un parametro, podemos escribirla asi
 const printValue: (a: string) => void = value => console.log(value);
@@ -41,7 +41,7 @@ const activeHobbies = ['Running',...hobbies];
 
 // Objetos
 const person = {
-    name: 'Cristian',
+    firstName: 'Cristian',
     age: 32
 };
 
@@ -58,3 +58,11 @@ const add =  (...numbers : number[]) => {
 }
 
 const addedNumbers = add(5,10,2,3.7);
+
+//   Array & Object Destructuring
+
+// Array 
+const [hobby1,hobby2, ...otherHobbies] = hobbies;
+
+// Objeto
+const {firstName,age} = person;
