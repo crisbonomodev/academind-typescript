@@ -21,11 +21,6 @@ class Department {
     set Name(value) {
         this.name = value;
     }
-    //Metodos
-    // devuelve el nombre del departamento formateado
-    describe() {
-        console.log(`Department: ${this.name}`);
-    }
     addEmployees(name) {
         this.employees.push(name);
     }
@@ -38,13 +33,32 @@ class Department {
 //private name: string;
 // Propiedad estatica
 Department.hello = 'Hello!';
-const salesDepartment = new Department(2, 'Sales', ['Sol']);
-salesDepartment.describe();
-Department.sayHi();
+class humanResourcesDepartment extends Department {
+    // convertimos el constructor a privado para que no pueda ser llamado desde afuera de la clase 
+    constructor(id, name, employees) {
+        super(3, 'RRHH', ['Ariel', 'Jesica']);
+    }
+    describe() {
+        console.log(`Department ${this.Name}`);
+    }
+    // generamos un metodo estatico que valida si la instancia ya existe, y sino, la crea.
+    static getInstance(id, name, employees) {
+        if (this.instance) {
+            return this.instance;
+        }
+        else {
+            this.instance = new humanResourcesDepartment(id, name, employees);
+            return this.instance;
+        }
+    }
+}
+// const salesDepartment = new Department(2,'Sales',['Sol']);
+// salesDepartment.describe();
+// Department.sayHi();
 // const salesCopy = {describe: salesDepartment.describe}; //como no hay referencia al objeto
 // salesCopy.describe(); //Esto devuelve undefined
-salesDepartment.Name = 'Marketing';
-salesDepartment.describe();
+// salesDepartment.Name = 'Marketing';
+// salesDepartment.describe();
 // Herencia
 // Usamos la palabra extends para indicar la relacion de herencia
 class ITDepartment extends Department {
@@ -53,6 +67,10 @@ class ITDepartment extends Department {
         super(id, name, employees);
         //indicamos la inicializacion de los parametros de la clase derivada
         this.phone = phone;
+    }
+    // Debemos implementar el metodo describe en la clase hija ya que es un metodo abstracto
+    describe() {
+        console.log(`Department ${this.Name}`);
     }
     addEmployees(name) {
         if (name === 'Cristian') {
