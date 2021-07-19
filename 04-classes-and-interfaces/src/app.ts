@@ -33,7 +33,7 @@ class Department {
 
 }
 
-const salesDepartment = new Department(1,'Sales');
+const salesDepartment = new Department(2,'Sales');
 salesDepartment.describe();
 
 // const salesCopy = {describe: salesDepartment.describe}; //como no hay referencia al objeto
@@ -41,3 +41,28 @@ salesDepartment.describe();
 
 salesDepartment.Name = 'Marketing';
 salesDepartment.describe();
+
+// Herencia
+// Usamos la palabra extends para indicar la relacion de herencia
+class ITDepartment extends Department {
+    // en el constructor de la clase derivada llamamos al constructor de la clase padre con super
+    // las propiedades especificas de la clase hija las podemos declarar en el constructor
+    private admins: string[];
+
+    constructor(id: number,name: string, admins: string[]) {
+        // Inicializamos el constructor de la clase padre
+        super(id,name);
+        //indicamos la inicializacion de los parametros de la clase derivada
+        this.admins = admins;
+    }
+
+    
+    public get Admins() : string[] {
+        return this.admins;
+    }
+    
+}
+
+const ItDepartment = new ITDepartment(1,'Sistemas',['Cristian','Alejandro']);
+ItDepartment.describe(); //Metodo de la clase padre
+console.log(ItDepartment.Admins); //Metodo de la clase hija

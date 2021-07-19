@@ -28,10 +28,26 @@ class Department {
         console.log(`Department: ${this.name}`);
     }
 }
-const salesDepartment = new Department(1, 'Sales');
+const salesDepartment = new Department(2, 'Sales');
 salesDepartment.describe();
 // const salesCopy = {describe: salesDepartment.describe}; //como no hay referencia al objeto
 // salesCopy.describe(); //Esto devuelve undefined
 salesDepartment.Name = 'Marketing';
 salesDepartment.describe();
+// Herencia
+// Usamos la palabra extends para indicar la relacion de herencia
+class ITDepartment extends Department {
+    constructor(id, name, admins) {
+        // Inicializamos el constructor de la clase padre
+        super(id, name);
+        //indicamos la inicializacion de los parametros de la clase derivada
+        this.admins = admins;
+    }
+    get Admins() {
+        return this.admins;
+    }
+}
+const ItDepartment = new ITDepartment(1, 'Sistemas', ['Cristian', 'Alejandro']);
+ItDepartment.describe(); //Metodo de la clase padre
+console.log(ItDepartment.Admins); //Metodo de la clase hija
 //# sourceMappingURL=app.js.map
