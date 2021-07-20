@@ -53,3 +53,41 @@ function printEmployeeInformation(emp:UnknownEmployee) {
 }
 
 //  Discriminated Unions
+// Podemos agregar un campo type para validar mas especificamente que tipo de interface tenemos
+interface Bird {
+    type: 'bird'; //Este campo si o si será bird si usamos esta interfaz
+    flyingSpeed: number;
+}
+
+interface Horse {
+    type: 'horse';
+    runningSpeed: number;
+}
+
+type Animal = Bird | Horse;
+
+function moveAnimal (animal: Animal) {
+    switch (animal.type) {
+        case 'bird':
+            console.log(`Flying speed: ${animal.flyingSpeed}`);
+            break;
+        case 'horse':
+            console.log(`Running speed: ${animal.runningSpeed}`);
+            break;
+        default:
+            break;
+    }
+}
+
+//  Type Casting
+
+//TS infiere que es un HTMLElement, pero no puede especificar cual es
+const paragraph = document.getElementById('message-output');
+// Tenemos dos formas de hacer type casting
+// 1
+//const input = <HTMLInputElement>document.getElementById('user-input');
+// 2
+//recomendada si trabajamos con React
+const input = document.getElementById('user-input') as HTMLInputElement; 
+
+input.value = 'Hello!'; //Object is possibly 'null'

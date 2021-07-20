@@ -25,5 +25,26 @@ function printEmployeeInformation(emp) {
         console.log(`Start Date: ${emp.startDate}`);
     }
 }
-//  Discriminated Unions
+function moveAnimal(animal) {
+    switch (animal.type) {
+        case 'bird':
+            console.log(`Flying speed: ${animal.flyingSpeed}`);
+            break;
+        case 'horse':
+            console.log(`Running speed: ${animal.runningSpeed}`);
+            break;
+        default:
+            break;
+    }
+}
+//  Type Casting
+//TS infiere que es un HTMLElement, pero no puede especificar cual es
+const paragraph = document.getElementById('message-output');
+// Tenemos dos formas de hacer type casting
+// 1
+//const input = <HTMLInputElement>document.getElementById('user-input');
+// 2
+//recomendada si trabajamos con React
+const input = document.getElementById('user-input');
+input.value = 'Hello!'; //Object is possibly 'null'
 //# sourceMappingURL=app.js.map
