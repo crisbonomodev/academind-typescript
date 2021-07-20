@@ -25,3 +25,31 @@ type Combinable = string | number;
 type Numeric = number | boolean;
 
 type Universal = Combinable & Numeric;
+
+// Type Guards
+
+function add(a: Combinable, b: Combinable) {
+    // implementamos un typeguard de tipo typeof para validar si nos llegan numeros
+    if
+    (typeof a === 'number' && typeof b === 'number') {
+        return a+b;
+    } 
+    else
+    {
+        return a.toString() + b.toString();
+    }
+}
+
+type UnknownEmployee = Employee | Admin;
+
+function printEmployeeInformation(emp:UnknownEmployee) {
+    console.log(`Name: ${emp.name}`);
+    if('privileges' in emp) { //Usamos la palabra clave in para validar si existe el campo dentro del objeto
+        console.log(`Privileges: ${emp.privileges}`);
+    }
+    if('startDate' in emp) { //Usamos la palabra clave in para validar si existe el campo dentro del objeto
+        console.log(`Start Date: ${emp.startDate}`);
+    }
+}
+
+//  Discriminated Unions
