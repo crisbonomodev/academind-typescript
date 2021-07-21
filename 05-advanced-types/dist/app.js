@@ -24,4 +24,8 @@ const fetchedUserDate = {
 };
 // con el ? indicamos a TS que chequee si existe el campo al que queremos acceder, sino no lo procesa
 console.log((_a = fetchedUserDate === null || fetchedUserDate === void 0 ? void 0 : fetchedUserDate.job) === null || _a === void 0 ? void 0 : _a.title);
+// Nullish Coalescing - ??
+const userInput = undefined;
+const userCopy = userInput !== null && userInput !== void 0 ? userInput : 'DEFAULT'; //si userInput es null o undefined, se guarda default
+//Esto es distinto de || ya que || evalua los valores falsy tambien, ?? es mas estricto.
 //# sourceMappingURL=app.js.map

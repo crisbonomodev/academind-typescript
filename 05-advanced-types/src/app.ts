@@ -146,3 +146,10 @@ const fetchedUserDate = {
 
 // con el ? indicamos a TS que chequee si existe el campo al que queremos acceder, sino no lo procesa
 console.log(fetchedUserDate?.job?.title);
+
+// Nullish Coalescing - ??
+const userInput = undefined;
+
+const userCopy = userInput ?? 'DEFAULT'; //si userInput es null o undefined, se guarda default
+//Esto es distinto de || ya que || evalua los valores falsy tambien, ?? es mas estricto.
+
