@@ -27,4 +27,27 @@ function merge(objA, objB) {
 //const mergeObj = merge({name: 'Cristian'},32); //Argument of type 'number' is not assignable to parameter of type 'object'.
 const mergeObj = merge({ name: 'Cristian' }, { age: 32 });
 console.log(mergeObj.age);
+function countAndDescribe(element) {
+    let descriptionText = 'got no value.';
+    if (element.length === 1) {
+        descriptionText = 'Got 1 element';
+    }
+    else {
+        descriptionText = `Got ${element.length} elements`;
+    }
+    return [element, descriptionText];
+}
+// Como vemos,podemos aceptar varios tipos de valores siempre que tengan la propiedad length
+console.log(countAndDescribe('Hello!'));
+console.log(countAndDescribe(['Sports', 'Cooking']));
+console.log(countAndDescribe([]));
+console.log(countAndDescribe({ name: 'Cristian', age: 32, length: 2 }));
+//  The "keyof" Constraint
+// podemos usar keyof cuando necesitamos asociar nuestro generic type 
+// a una propiedad de otro generic type.
+function extractAndConvert(obj, key) {
+    return obj[key];
+}
+extractAndConvert({ id: 1, name: 'Cristian', age: 32 }, 'id'); // funciona ok ya que id es una key del objeto
+// extractAndConvert({id: 1, name: 'Cristian', age: 32},'asd'); //no funciona ya que no ubica asd
 //# sourceMappingURL=app.js.map
