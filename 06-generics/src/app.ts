@@ -63,3 +63,46 @@ function extractAndConvert<T extends object, U extends keyof T>(obj: T,key: U) {
 
 extractAndConvert({id: 1, name: 'Cristian', age: 32},'id'); // funciona ok ya que id es una key del objeto
 // extractAndConvert({id: 1, name: 'Cristian', age: 32},'asd'); //no funciona ya que no ubica asd
+
+//   Generic Classes
+// Generemos una clase generica para almacenar información.
+class DataStorage<T> {
+    private data: T[] = [];
+
+    addItem(item: T) {
+        this.data.push(item);
+    }
+
+    removeItem(item: T) {
+        this.data.splice(this.data.indexOf(item),1);
+    }
+
+    getItems() {
+        return [...this.data];
+    }
+}
+// Ahora, podemos crear nuestros storages 
+const textStorage = new DataStorage<string>();
+const numberStorage = new DataStorage<number>();
+const textArrayStorage = new DataStorage<string[]>();
+const objectStorage = new DataStorage<object>();
+textStorage.addItem('Cristian');
+//textStorage.addItem(2); //Argument of type 'number' is not assignable to parameter of type 'string'
+console.log(textStorage.getItems());
+
+numberStorage.addItem(3);
+//numberStorage.addItem('Cristian'); //Argument of type 'string' is not assignable to parameter of type 'number'.
+console.log(numberStorage.getItems());
+
+textArrayStorage.addItem(['Cristian','Alejandro']);
+// textArrayStorage.addItem(3); //Argument of type 'number' is not assignable to parameter of type 'string[]
+console.log(textArrayStorage.getItems());
+
+// objects
+objectStorage.addItem({name: 'Cristian'});
+objectStorage.addItem({name: 'Alejandro'});
+
+objectStorage.removeItem({name: 'Cristian'}); // esto NO funciona, ya que el objeto que le pasamos
+// es nuevo, y TS/JS buscara el objeto sin encontrarlo con splice, retornando -1 y
+// quitando el ultimo elemento de la ListeningStateChangedEvent.
+console.log(objectStorage.getItems());
