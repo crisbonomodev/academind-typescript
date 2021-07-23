@@ -106,3 +106,31 @@ objectStorage.removeItem({name: 'Cristian'}); // esto NO funciona, ya que el obj
 // es nuevo, y TS/JS buscara el objeto sin encontrarlo con splice, retornando -1 y
 // quitando el ultimo elemento de la ListeningStateChangedEvent.
 console.log(objectStorage.getItems());
+
+//   Generic Utility Types
+
+// Partial
+// Partial convierte las propiedades de un type en opcionales, lo que nos permite evitar tener 
+// que completarlas inmediatamente.
+interface CourseGoal {
+    title: string;
+    description: string;
+    completeUntil: Date;
+}
+
+function createCourseGoal (title: string, description: string, date: Date) : CourseGoal {
+    // Iniciamos con un tipo parcial
+let courseGoal: Partial<CourseGoal> = {};
+courseGoal.title = title;
+courseGoal.description = description;
+courseGoal.completeUntil = date;
+
+// Al final, hacemos type casting para devolver nuestra variable como CourseGoal
+return courseGoal as CourseGoal;
+}
+
+// Readonly - Util para no modificar datos
+const names: Readonly<string[]> = ['Cristian','Alejandro'];
+// names.push('asdasdas'); //Property 'push' does not exist on type 'readonly string[]'.ts(2339)
+
+// https://www.typescriptlang.org/docs/handbook/utility-types.html

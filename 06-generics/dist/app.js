@@ -87,4 +87,17 @@ objectStorage.removeItem({ name: 'Cristian' }); // esto NO funciona, ya que el o
 // es nuevo, y TS/JS buscara el objeto sin encontrarlo con splice, retornando -1 y
 // quitando el ultimo elemento de la ListeningStateChangedEvent.
 console.log(objectStorage.getItems());
+function createCourseGoal(title, description, date) {
+    // Iniciamos con un tipo parcial
+    let courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = date;
+    // Al final, hacemos type casting para devolver nuestra variable como CourseGoal
+    return courseGoal;
+}
+// Readonly - Util para no modificar datos
+const names = ['Cristian', 'Alejandro'];
+// names.push('asdasdas'); //Property 'push' does not exist on type 'readonly string[]'.ts(2339)
+// https://www.typescriptlang.org/docs/handbook/utility-types.html
 //# sourceMappingURL=app.js.map
