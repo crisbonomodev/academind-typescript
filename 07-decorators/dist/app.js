@@ -12,10 +12,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 // decorator factory: funcion que devuelve un decorator 
-function Logger(logString) {
+function WithTemplate(template, hookId) {
     return function (constructor) {
-        console.log(logString);
-        console.log(constructor);
+        const hookEl = document.getElementById(hookId);
+        if (hookEl) {
+            hookEl.innerHTML = template;
+        }
     };
 }
 // agregamos nuestro decorator a la clase
@@ -26,7 +28,7 @@ let Person = class Person {
     }
 };
 Person = __decorate([
-    Logger('LOGGING - PERSON')
+    WithTemplate("<h1>Hola!</h1>", "app")
 ], Person);
 const person = new Person();
 console.log(person);
@@ -40,4 +42,21 @@ console.log(person);
 // }
 // app.ts:14 Creating person object...
 // app.ts:20 Person {name: "Cristian"}
+// Vamos a crear un nuevo decorator factory
+// function WithTemplate(template: string, hookId: string){
+//     return function(_: Function) { // con el underscore indicamos a TS que no nos interesa el parametro
+//         const hookEl = document.getElementById(hookId);
+//         if (hookEl) {
+//             hookEl.innerHTML = template;
+//         }
+//     }
+// }
+// @WithTemplate('<h2>WithTemplate Decorator</h2>','app')
+// class Person {
+//     name: string;
+// constructor() {
+//         this.name = 'Cristian';
+//         console.log('Creating person object...');
+// }
+// }
 //# sourceMappingURL=app.js.map

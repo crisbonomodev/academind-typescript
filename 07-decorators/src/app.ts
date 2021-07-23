@@ -6,19 +6,19 @@
 // }
 
 // decorator factory: funcion que devuelve un decorator 
-function Logger(logString: string) {
-    return function(constructor: Function) {
-        console.log(logString);
-        console.log(constructor);
+function WithTemplate(template: string, hookId: string){
+    return function(constructor: any) { // con el underscore indicamos a TS que no nos interesa el parametro
+        const hookEl = document.getElementById(hookId);
+        if (hookEl) {
+            hookEl.innerHTML = template;
+        }
     }
-
 }
 
 // agregamos nuestro decorator a la clase
-@Logger('LOGGING - PERSON')
+@WithTemplate("<h1>Hola!</h1>","app")
 class Person {
     name = 'Cristian';
-
     constructor() {
         console.log('Creating person object...');
     }
@@ -37,3 +37,23 @@ console.log(person);
 // }
 // app.ts:14 Creating person object...
 // app.ts:20 Person {name: "Cristian"}
+
+// Vamos a crear un nuevo decorator factory
+
+// function WithTemplate(template: string, hookId: string){
+//     return function(_: Function) { // con el underscore indicamos a TS que no nos interesa el parametro
+//         const hookEl = document.getElementById(hookId);
+//         if (hookEl) {
+//             hookEl.innerHTML = template;
+//         }
+//     }
+// }
+
+// @WithTemplate('<h2>WithTemplate Decorator</h2>','app')
+// class Person {
+//     name: string;
+// constructor() {
+//         this.name = 'Cristian';
+//         console.log('Creating person object...');
+// }
+// }
