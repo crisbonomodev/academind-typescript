@@ -52,4 +52,4 @@ export const deleteTodo: RequestHandler<{id: string}> = (req, res, next) => {
     res.status(200).json({
         message: 'Todo Deleted!'
     });
-};
+}; 
